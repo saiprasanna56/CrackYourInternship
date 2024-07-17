@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        // Using Boyer-Moore Majority Voting Algorithm
+        int cnt = 0;
+        int el = -1;
+        for(auto i : nums){
+            if(cnt == 0){
+                cnt ++;
+                el = i;
+            }
+            else if(el == i){
+                cnt++;
+            }
+            else{
+                cnt--;
+            }
+        }
+        cnt = 0;
+        for(auto i: nums){
+            if(el == i) cnt++;
+        }
+        if(cnt <= nums.size()/2) return -1;
+        else return el;
+    }
+};
